@@ -45,4 +45,4 @@ The game will use the [p5.js](https://p5js.org/) javascript library to manipulat
 * The canvas will be 4:3 vertically oriented
 
 #### Wireframe/Mockup
-![Desktop Wire Frame](Mockups/Desktop Mockup.png)
+![Desktop Wire Frame](arcade-game/Mockups/Desktop Mockup.png)
