@@ -17,6 +17,9 @@ class GameState {
 		this.currentEnemyCount; // Keep track of how many enemies are left on screen
 
 		// Borders - stuff get deleted when it crosses these
+		
+		this.borderGroup = this.createBorderGroup();
+		/*
 		this.bottomBorder = createSprite(width/2, height, width, 2);
 		this.bottomBorder.shapeColor = (100);
 		this.bottomBorder.immovable = 0;
@@ -24,6 +27,7 @@ class GameState {
 		this.topBorder = createSprite(width/2, 0, width, 2);
 		this.topBorder.shapeColor = (100);
 		this.topBorder.immovable = 0;
+		*/
 
 		// Star Background - we're flying!
 		this.starBackground = new Group();
@@ -67,6 +71,21 @@ class GameState {
 		return enemyGroup;
 	}
 
+	createBorderGroup(){
+		let borders = new Group();
+		borders.add(createSprite(width/2, height, width, 2)); // Bottom
+		borders.add(createSprite(width/2, 0, width, 2)); // Top
+		borders.add(createSprite(width, height/2, 2, height)); // Right
+		borders.add(createSprite(0, height/2, 2, height)); // Left
+
+		for (let i=0;i<4;i++){
+			borders[i].immovable = true;
+			borders[i].shapeColor = color(0,0,255);
+		}
+
+		return borders;
+	}
+
 	// Start a level
 	startLevel(levelNumber){
 		console.log('starting level ' + levelNumber);
@@ -95,7 +114,7 @@ class GameState {
 	}
 
 	moveStars(){
-		this.starBackground.collide(this.bottomBorder, function(star, bottom){
+		this.starBackground.collide(this.borderGroup[0], function(star, bottom){
 			star.position.y = 0;
 		});
 	}
