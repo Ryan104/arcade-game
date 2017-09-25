@@ -5,6 +5,7 @@ class GameState {
 		this.lives = lives; // The player's remaining lives
 		this.level = level; // the curent level
 		this.score = score; // The player's score
+		this.player;
 
 		// levelContents -- how many enemies appear each level, etc
 		this.levelContents = [
@@ -35,10 +36,27 @@ class GameState {
 		}
 	}
 
+	// Create a player instance
+	createPlayer(){
+		console.log('creating player');
+		let player = createSprite(width/2, height-50, 25, 25);
+		player.shapeColor = color(255,0,0);
+		player.immovable = true;
+
+		return player;
+	}
+
+
+	// Create an enemy instance
+
 	// Start a level
 	startLevel(levelNumber){
+		console.log('starting level ' + levelNumber);
 		this.level = levelNumber;
 		this.currentEnemyCount = this.levelContents[levelNumber];
+
+		console.log('trying to create player');
+		this.player = this.createPlayer();
 	}
 
 	moveStars(){

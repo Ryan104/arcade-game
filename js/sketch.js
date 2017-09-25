@@ -6,7 +6,6 @@
 
 let gameState;
 let player;
-let stars;
 
 
 function setup(){
@@ -17,12 +16,11 @@ function setup(){
 	canvas.parent(document.getElementById('canvas-container'));
 
 	// Setup the game state (lives, level#, enemy patterns, score, etc)
-	gameState = new GameState(3);
+	gameState = new GameState(3); // Init with 3 lives
 
 
 	// Create player ship
-
-	//player = new Player();
+	gameState.startLevel(0);
 
 
 
