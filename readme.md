@@ -46,3 +46,10 @@ The game will use the [p5.js](https://p5js.org/) javascript library to manipulat
 
 #### Wireframe/Mockup
 ![Desktop Wire Frame](mockups/desktop-mockup.png)
+
+#### ADTs (Abstract Data Types)
+* Player Character
+* Enemy Ships
+* Projectiles
+* Background Objects
+* Game board
