@@ -48,6 +48,24 @@ class GameState {
 
 
 	// Create an enemy instance
+	createEnemyGroup(x,y,n){
+		// create n enemies
+		let enemyGroup = new Group();
+
+		for (let i=0; i<n; i++){
+			let enemy = createSprite(x+i*50,y, 20, 20);
+			enemy.shapeColor = color(100, 255, 0);
+			enemy.immovable = true;
+
+			// enemies slowly move to bottom of screen
+			enemy.setVelocity(0,0.25);
+
+			enemyGroup.add(enemy);
+		}
+		
+
+		return enemyGroup;
+	}
 
 	// Start a level
 	startLevel(levelNumber){
@@ -55,8 +73,13 @@ class GameState {
 		this.level = levelNumber;
 		this.currentEnemyCount = this.levelContents[levelNumber];
 
-		console.log('trying to create player');
+		// Create Player
 		this.player = this.createPlayer();
+
+		// Create enemies based off levelContents
+		this.createEnemyGroup(50,50,3);
+
+
 	}
 
 	moveStars(){
