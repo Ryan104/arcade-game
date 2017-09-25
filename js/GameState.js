@@ -82,6 +82,18 @@ class GameState {
 
 	}
 
+	movePlayer(){
+		if (keyIsDown(65)){ // 65 == a
+			this.player.position.x -= 2;
+		}
+		if (keyIsDown(68)){
+			this.player.position.x += 2;
+		}
+
+		// there are multiple ways to take keyboard inputs, tired several. key is down works best because you can get mutltiple key presses at same time
+		// otherwise javscript's 'key' or 'keycode' variable will always be the most recent press
+	}
+
 	moveStars(){
 		this.starBackground.collide(this.bottomBorder, function(star, bottom){
 			star.position.y = 0;
