@@ -10,6 +10,13 @@ This game will take inspiration from [vertically scrolling](https://en.wikipedia
 The game will use the [p5.js](https://p5js.org/) javascript library to manipulate HTML5's `<canvas>`. Vanilla JS DOM manipulation will be used to handle the page outside of the canvas.
 
 ### Detailed Ideas
+#### Trello Board
+[trello](https://trello.com/b/wyGnPLBF/project-1)
+
+#### Wireframe/Mockup
+![Wireframe](mockups/wireframe.png)
+![Desktop Mockup](mockups/desktop-mockup.png)
+
 #### The Game
 * The player will be able to move left and right using the mouse or keyboard*
 * The player will be able to fire projectiles*
@@ -43,9 +50,6 @@ The game will use the [p5.js](https://p5js.org/) javascript library to manipulat
 * The user will have the option to turn the sound on and off
 * The canvas is fixed width and the user will see side banners on large screens. On smaller screens, the banners will not be visible.
 * The canvas will be 4:3 vertically oriented
-
-#### Wireframe/Mockup
-![Desktop Wire Frame](mockups/desktop-mockup.png)
 
 #### ADTs (Abstract Data Types)
 * Player Character
