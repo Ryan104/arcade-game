@@ -52,12 +52,12 @@ class GameState {
 		let enemyGroup = new Group();
 
 		for (let i=0; i<n; i++){
-			let enemy = createSprite(x+i*50,y, 20, 20);
+			let enemy = createSprite(x+i*50,y, 10, 10);
 			enemy.shapeColor = color(100, 255, 0);
-			enemy.immovable = true;
+			enemy.health = 3;
 
 			// enemies slowly move to bottom of screen
-			enemy.setVelocity(0,0.25);
+			enemy.setVelocity(0,1);
 
 			this.enemies.add(enemy);
 		}
@@ -66,7 +66,7 @@ class GameState {
 		return enemyGroup;
 	}
 
-	createProjectile(whoShot, x, y, vel=4){
+	createProjectile(whoShot, x, y, vel=2){
 		// whoshot must be 'player' or 'enemy'
 		// x and y are the initial position of the projectile (ie the position of the object that created them)
 		// v is the velocity of the projectile
@@ -126,8 +126,23 @@ class GameState {
 			this.player.position.x += 2;
 		}
 		if (keyIsDown(32)){
-			this.createProjectile('player', this.player.position.x, this.player.position.y);
+
+			//this.createProjectile('player', this.player.position.x, this.player.position.y);
 		}
+
+		if (keyIsPressed){
+			if (key === ' '){
+				this.createProjectile('player', this.player.position.x, this.player.position.y);
+				key = ']';
+			}
+		}
+
+		// function keyTyped(){
+		// 	console.log(key);
+		// 	if (keyCode === 32){
+		// 		this.createProjectile('player', this.player.position.x, this.player.position.y);
+		// 	}
+		// }
 
 		// there are multiple ways to take keyboard inputs, tired several. key is down works best because you can get mutltiple key presses at same time
 		// otherwise javscript's 'key' or 'keycode' variable will always be the most recent press
@@ -145,7 +160,10 @@ class GameState {
 
 		// Enemies collide with playerProjectiles
 		this.enemies.collide(this.playerProjectiles, function(enemy, projectile){
-			enemy.remove();
+			enemy.health -= 1;
+			if (enemy.health <= 0){
+				enemy.remove();
+			}
 			projectile.remove();
 			this.score += 20;
 		});
