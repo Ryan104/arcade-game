@@ -74,6 +74,12 @@ class GameState {
 		this.currentEnemyCount -= 1;
 	}
 
+	destroyPlayer(player){
+		player.remove();
+		this.lives -= 1;
+		this.player = this.createPlayer();
+	}
+
 	createProjectile(whoShot, x, y, vel=2){
 		// whoshot must be 'player' or 'enemy'
 		// x and y are the initial position of the projectile (ie the position of the object that created them)
@@ -88,6 +94,7 @@ class GameState {
 		} else if (whoShot === 'enemy'){
 			newProjectile.setVelocity(0, vel);
 			newProjectile.shapeColor = color(255,0,0);
+			this.enemyProjectiles.add(newProjectile);
 		}
 
 
@@ -115,7 +122,6 @@ class GameState {
 		console.log('starting level ' + levelNumber);
 		this.level = levelNumber;
 		this.currentEnemyCount = this.levelContents[levelNumber].enemyCount;
-		console.log(this.currentEnemyCount);
 
 		// Create Player
 		this.player = this.createPlayer();
@@ -127,37 +133,31 @@ class GameState {
 	}
 
 	playerInputs(){
-
+		// Player movement
 		if (keyIsDown(65)){ // 65 == a
 			this.player.position.x -= 2;
 		}
 		if (keyIsDown(68)){
 			this.player.position.x += 2;
 		}
-		if (keyIsDown(32)){
-
-			//this.createProjectile('player', this.player.position.x, this.player.position.y);
-		}
-
+		// Player fire
 		if (keyIsPressed){
 			if (key === ' '){
 				this.createProjectile('player', this.player.position.x, this.player.position.y);
-				key = ']';
+				key = ']'; // reset key to prevent rapid fire
 			}
 		}
 
-		// function keyTyped(){
-		// 	console.log(key);
-		// 	if (keyCode === 32){
-		// 		this.createProjectile('player', this.player.position.x, this.player.position.y);
-		// 	}
-		// }
-
-		// there are multiple ways to take keyboard inputs, tired several. key is down works best because you can get mutltiple key presses at same time
-		// otherwise javscript's 'key' or 'keycode' variable will always be the most recent press
+		/* 
+			there are multiple ways to take keyboard inputs, tired several. 
+			key is down works best because you can get mutltiple key presses at same time
+			otherwise javscript's 'key' or 'keycode' variable will always be the most recent press
+		*/
 	}
 
 	collisions(){
+		// ---- Border Collisions ---- //
+
 		// Player cant leave field
 		this.player.collide(this.borders[2]);
 		this.player.collide(this.borders[3]); // NOTE: could not get collider to work with entire borders group...
@@ -167,42 +167,46 @@ class GameState {
 			projectile.remove();
 		});
 
-		// Enemies collide with playerProjectiles
-		this.enemies.collide(this.playerProjectiles, (enemy, projectile) => {
-			enemy.health -= 1;
-			if (enemy.health <= 0){
-				this.destroyEnemy(enemy);
-				this.score += 20;
-				console.log(this.score);
-				console.log(this.currentEnemyCount);
-			}
-
-			projectile.remove();
-			
-		});
-
 		// Enemy leaves the game
 		this.enemies.collide(this.borders[0], (enemy, projectile) => {
 			this.destroyEnemy(enemy);
 			console.log(this.currentEnemyCount);
 		});
 
-		// player collides with enemy
-		this.enemies.collide(this.player, (enemy, player) => {
-			this.destroyEnemy(enemy);
-
-			player.remove();
-			this.lives -= 1;
-			this.player = this.createPlayer();
-
-			console.log('lives: ' + this.lives);
-		});
-
-		// move the background
+		// cycle the background
 		this.starBackground.collide(this.borders[0], function(star, bottom){
 			star.position.y = 0;
 		});
 
+
+		// ---- Projectile Collisions ---- //
+
+		// Player's projectile hits enemy
+		this.enemies.collide(this.playerProjectiles, (enemy, projectile) => {
+			enemy.health -= 1;
+			if (enemy.health <= 0){
+				this.destroyEnemy(enemy);
+				this.score += 20;
+			}
+			projectile.remove();
+		});
+
+		// Enemies projectile hits player
+		this.enemyProjectiles.collide(this.player, (projectile, player) => {
+			this.destroyPlayer(player);
+			projectile.remove();
+
+			console.log('lives: ' + this.lives);
+		});
+
+
+		// ---- Player/Enemy Collision ---- //
+
+		// player collides with enemy
+		this.enemies.collide(this.player, (enemy, player) => {
+			this.destroyEnemy(enemy);
+			this.destroyPlayer(player);
+		});
 	}
 
 	automation(){
