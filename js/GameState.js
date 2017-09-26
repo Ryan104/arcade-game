@@ -17,17 +17,7 @@ class GameState {
 		this.currentEnemyCount; // Keep track of how many enemies are left on screen
 
 		// Borders - stuff get deleted when it crosses these
-		
-		this.borderGroup = this.createBorderGroup();
-		/*
-		this.bottomBorder = createSprite(width/2, height, width, 2);
-		this.bottomBorder.shapeColor = (100);
-		this.bottomBorder.immovable = 0;
-
-		this.topBorder = createSprite(width/2, 0, width, 2);
-		this.topBorder.shapeColor = (100);
-		this.topBorder.immovable = 0;
-		*/
+		this.borders = this.createBorderGroup();
 
 		// Star Background - we're flying!
 		this.starBackground = new Group();
@@ -45,7 +35,7 @@ class GameState {
 		console.log('creating player');
 		let player = createSprite(width/2, height-50, 25, 25);
 		player.shapeColor = color(255,0,0);
-		player.immovable = true;
+		//player.immovable = true;
 
 		return player;
 	}
@@ -72,6 +62,8 @@ class GameState {
 	}
 
 	createBorderGroup(){
+		// creates boundaries for the game board - useful for detecting when objects leave the playing field
+		// TODO: Make borders transparent
 		let borders = new Group();
 		borders.add(createSprite(width/2, height, width, 2)); // Bottom
 		borders.add(createSprite(width/2, 0, width, 2)); // Top
@@ -79,7 +71,7 @@ class GameState {
 		borders.add(createSprite(0, height/2, 2, height)); // Left
 
 		for (let i=0;i<4;i++){
-			borders[i].immovable = true;
+			//borders[i].immovable = true;
 			borders[i].shapeColor = color(0,0,255);
 		}
 
@@ -102,6 +94,7 @@ class GameState {
 	}
 
 	movePlayer(){
+
 		if (keyIsDown(65)){ // 65 == a
 			this.player.position.x -= 2;
 		}
@@ -109,12 +102,15 @@ class GameState {
 			this.player.position.x += 2;
 		}
 
+		this.player.collide(this.borders[2]);
+		this.player.collide(this.borders[3]);
+
 		// there are multiple ways to take keyboard inputs, tired several. key is down works best because you can get mutltiple key presses at same time
 		// otherwise javscript's 'key' or 'keycode' variable will always be the most recent press
 	}
 
 	moveStars(){
-		this.starBackground.collide(this.borderGroup[0], function(star, bottom){
+		this.starBackground.collide(this.borders[0], function(star, bottom){
 			star.position.y = 0;
 		});
 	}
