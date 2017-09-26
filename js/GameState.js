@@ -69,6 +69,11 @@ class GameState {
 		return enemyGroup;
 	}
 
+	destroyEnemy(enemySprite){
+		enemySprite.remove();
+		this.currentEnemyCount -= 1;
+	}
+
 	createProjectile(whoShot, x, y, vel=2){
 		// whoshot must be 'player' or 'enemy'
 		// x and y are the initial position of the projectile (ie the position of the object that created them)
@@ -166,30 +171,31 @@ class GameState {
 		this.enemies.collide(this.playerProjectiles, (enemy, projectile) => {
 			enemy.health -= 1;
 			if (enemy.health <= 0){
-				enemy.remove();
+				this.destroyEnemy(enemy);
 				this.score += 20;
 				console.log(this.score);
-				this.currentEnemyCount -= 1;
 				console.log(this.currentEnemyCount);
 			}
+
 			projectile.remove();
 			
 		});
 
 		// Enemy leaves the game
 		this.enemies.collide(this.borders[0], (enemy, projectile) => {
-			enemy.remove();
-			this.currentEnemyCount -= 1;
+			this.destroyEnemy(enemy);
 			console.log(this.currentEnemyCount);
 		});
 
 		// player collides with enemy
 		this.enemies.collide(this.player, (enemy, player) => {
+			this.destroyEnemy(enemy);
+
 			player.remove();
 			this.lives -= 1;
-			console.log(this.lives);
-			enemy.remove();
-			this.createPlayer();
+			this.player = this.createPlayer();
+
+			console.log('lives: ' + this.lives);
 		});
 
 		// move the background
