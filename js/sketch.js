@@ -33,6 +33,12 @@ function draw(){
 	gameState.playerInputs();
 	gameState.collisions();
 
+	fill(170,170,17);
+	textSize(16);
+	text(('Score: ' + gameState.score), width-70, 20);
+
+	text(('Lives: ' + gameState.lives), 20, 20);
+
 	drawSprites(); // draws all sprites to canvas (p5.play.js)
 
 

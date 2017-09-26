@@ -217,5 +217,8 @@ class GameState {
 				this.createProjectile('enemy', enemy.position.x, enemy.position.y, 1.5);
 			}
 		});
+
+		// Display the score
+		
 	}
 }
