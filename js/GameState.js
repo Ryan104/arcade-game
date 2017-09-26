@@ -7,6 +7,9 @@ class GameState {
 		this.score = score; // The player's score
 		this.player;
 
+		this.playerProjectiles = new Group(); // player projectiles will have collision events with enemies
+		this.enemyProjectiles = new Group(); // enemy projectiles will have collision events with the player
+
 		// levelContents -- how many enemies appear each level, etc
 		this.levelContents = [
 			{
@@ -61,6 +64,24 @@ class GameState {
 		return enemyGroup;
 	}
 
+	createProjectile(whoShot, x, y, vel=4){
+		// whoshot must be 'player' or 'enemy'
+		// x and y are the initial position of the projectile (ie the position of the object that created them)
+		// v is the velocity of the projectile
+
+		let newProjectile = createSprite(x, y, 2, 5);
+
+		if (whoShot === 'player'){
+			newProjectile.setVelocity(0, vel);
+			newProjectile.shapeColor = color(0,0,255);
+		} else if (whoShot === 'enemy'){
+			newProjectile.setVelocity(0, (vel * -1));
+			newProjectile.shapeColor = color(255,0,0);
+		}
+
+
+	}
+
 	createBorderGroup(){
 		// creates boundaries for the game board - useful for detecting when objects leave the playing field
 		// TODO: Make borders transparent
@@ -101,6 +122,7 @@ class GameState {
 		if (keyIsDown(68)){
 			this.player.position.x += 2;
 		}
+		
 
 		this.player.collide(this.borders[2]);
 		this.player.collide(this.borders[3]);
