@@ -7,6 +7,8 @@ class GameState {
 		this.score = score; // The player's score
 		this.player;
 
+		this.enemies = new Group();
+
 		this.playerProjectiles = new Group(); // player projectiles will have collision events with enemies
 		this.enemyProjectiles = new Group(); // enemy projectiles will have collision events with the player
 
@@ -57,7 +59,7 @@ class GameState {
 			// enemies slowly move to bottom of screen
 			enemy.setVelocity(0,0.25);
 
-			enemyGroup.add(enemy);
+			this.enemies.add(enemy);
 		}
 		
 
@@ -74,6 +76,7 @@ class GameState {
 		if (whoShot === 'player'){
 			newProjectile.setVelocity(0, (vel * -1));
 			newProjectile.shapeColor = color(0,0,255);
+			this.playerProjectiles.add(newProjectile);
 		} else if (whoShot === 'enemy'){
 			newProjectile.setVelocity(0, vel);
 			newProjectile.shapeColor = color(255,0,0);
@@ -114,7 +117,7 @@ class GameState {
 
 	}
 
-	movePlayer(){
+	playerInputs(){
 
 		if (keyIsDown(65)){ // 65 == a
 			this.player.position.x -= 2;
@@ -126,11 +129,27 @@ class GameState {
 			this.createProjectile('player', this.player.position.x, this.player.position.y);
 		}
 
-		this.player.collide(this.borders[2]);
-		this.player.collide(this.borders[3]);
-
 		// there are multiple ways to take keyboard inputs, tired several. key is down works best because you can get mutltiple key presses at same time
 		// otherwise javscript's 'key' or 'keycode' variable will always be the most recent press
+	}
+
+	collisions(){
+		// Player cant leave field
+		this.player.collide(this.borders[2]);
+		this.player.collide(this.borders[3]); // NOTE: could not get collider to work with entire borders group...
+
+		// Projectiles cannot leave borders
+		this.playerProjectiles.collide(this.borders[1], function(projectile){
+			projectile.remove();
+		});
+
+		// Enemies collide with playerProjectiles
+		this.enemies.collide(this.playerProjectiles, function(enemy, projectile){
+			enemy.remove();
+			projectile.remove();
+			this.score += 20;
+		});
+
 	}
 
 	moveStars(){

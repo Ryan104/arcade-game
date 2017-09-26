@@ -30,7 +30,8 @@ function draw(){
 	background(0); // black
 
 	gameState.moveStars(); // keeps star background scrolling
-	gameState.movePlayer();
+	gameState.playerInputs();
+	gameState.collisions();
 
 	drawSprites(); // draws all sprites to canvas (p5.play.js)
 
