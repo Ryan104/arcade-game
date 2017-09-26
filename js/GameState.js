@@ -72,10 +72,10 @@ class GameState {
 		let newProjectile = createSprite(x, y, 2, 5);
 
 		if (whoShot === 'player'){
-			newProjectile.setVelocity(0, vel);
+			newProjectile.setVelocity(0, (vel * -1));
 			newProjectile.shapeColor = color(0,0,255);
 		} else if (whoShot === 'enemy'){
-			newProjectile.setVelocity(0, (vel * -1));
+			newProjectile.setVelocity(0, vel);
 			newProjectile.shapeColor = color(255,0,0);
 		}
 
@@ -122,7 +122,9 @@ class GameState {
 		if (keyIsDown(68)){
 			this.player.position.x += 2;
 		}
-		
+		if (keyIsDown(32)){
+			this.createProjectile('player', this.player.position.x, this.player.position.y);
+		}
 
 		this.player.collide(this.borders[2]);
 		this.player.collide(this.borders[3]);
