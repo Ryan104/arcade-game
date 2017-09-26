@@ -29,7 +29,7 @@ function setup(){
 function draw(){
 	background(0); // black
 
-	gameState.moveStars(); // keeps star background scrolling
+	gameState.automation(); // keeps star background scrolling
 	gameState.playerInputs();
 	gameState.collisions();
 

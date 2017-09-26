@@ -56,8 +56,11 @@ class GameState {
 			enemy.shapeColor = color(100, 255, 0);
 			enemy.health = 3;
 
+			// enemy projectiles
+
+
 			// enemies slowly move to bottom of screen
-			enemy.setVelocity(0,1);
+			enemy.setVelocity(0,0.5);
 
 			this.enemies.add(enemy);
 		}
@@ -106,7 +109,8 @@ class GameState {
 	startLevel(levelNumber){
 		console.log('starting level ' + levelNumber);
 		this.level = levelNumber;
-		this.currentEnemyCount = this.levelContents[levelNumber];
+		this.currentEnemyCount = this.levelContents[levelNumber].enemyCount;
+		console.log(this.currentEnemyCount);
 
 		// Create Player
 		this.player = this.createPlayer();
@@ -159,20 +163,41 @@ class GameState {
 		});
 
 		// Enemies collide with playerProjectiles
-		this.enemies.collide(this.playerProjectiles, function(enemy, projectile){
+		this.enemies.collide(this.playerProjectiles, (enemy, projectile) => {
 			enemy.health -= 1;
 			if (enemy.health <= 0){
 				enemy.remove();
+				this.score += 20;
+				console.log(this.score);
+				this.currentEnemyCount -= 1;
+				console.log(this.currentEnemyCount);
 			}
 			projectile.remove();
-			this.score += 20;
+			
+		});
+
+		// Enemy leaves the game
+		this.enemies.collide(this.borders[0], (enemy, projectile) => {
+			enemy.remove();
+			this.currentEnemyCount -= 1;
+			console.log(this.currentEnemyCount);
+
+		});
+
+		// move the background
+		this.starBackground.collide(this.borders[0], function(star, bottom){
+			star.position.y = 0;
 		});
 
 	}
 
-	moveStars(){
-		this.starBackground.collide(this.borders[0], function(star, bottom){
-			star.position.y = 0;
+	automation(){
+
+		// Enemy fire randomly
+		this.enemies.forEach((enemy) => {
+			if (Math.random() < 0.01){ // odds of enemy firing each frame
+				this.createProjectile('enemy', enemy.position.x, enemy.position.y, 1.5);
+			}
 		});
 	}
 }
