@@ -2,6 +2,7 @@ console.log('GameState.js');
 
 class GameState {
 	constructor(lives, level=0, score=0){
+		this.playing = true;
 		this.lives = lives; // The player's remaining lives
 		this.level = level; // the curent level
 		this.score = score; // The player's score
@@ -15,7 +16,7 @@ class GameState {
 		// levelContents -- how many enemies appear each level, etc
 		this.levelContents = [
 			{
-				enemyCount: 3
+				enemyCount: 4
 			}
 		];
 
@@ -77,7 +78,12 @@ class GameState {
 	destroyPlayer(player){
 		player.remove();
 		this.lives -= 1;
-		this.player = this.createPlayer();
+		if (this.lives > 0){
+			this.player = this.createPlayer();
+		} else {
+			this.playing = false;
+		}
+		
 	}
 
 	createProjectile(whoShot, x, y, vel=2){
@@ -127,7 +133,7 @@ class GameState {
 		this.player = this.createPlayer();
 
 		// Create enemies based off levelContents
-		this.createEnemyGroup(50,50,3);
+		this.createEnemyGroup(50,50,this.currentEnemyCount);
 
 
 	}
@@ -178,35 +184,37 @@ class GameState {
 			star.position.y = 0;
 		});
 
+		if (this.playing){ // only check collisions if the game is active ie Not game over
 
-		// ---- Projectile Collisions ---- //
+			// ---- Projectile Collisions ---- //
 
-		// Player's projectile hits enemy
-		this.enemies.collide(this.playerProjectiles, (enemy, projectile) => {
-			enemy.health -= 1;
-			if (enemy.health <= 0){
+			// Player's projectile hits enemy
+			this.enemies.collide(this.playerProjectiles, (enemy, projectile) => {
+				enemy.health -= 1;
+				if (enemy.health <= 0){
+					this.destroyEnemy(enemy);
+					this.score += 20;
+				}
+				projectile.remove();
+			});
+
+			// Enemies projectile hits player
+			this.enemyProjectiles.collide(this.player, (projectile, player) => {
+				this.destroyPlayer(player);
+				projectile.remove();
+
+				console.log('lives: ' + this.lives);
+			});
+
+
+			// ---- Player/Enemy Collision ---- //
+
+			// player collides with enemy
+			this.enemies.collide(this.player, (enemy, player) => {
 				this.destroyEnemy(enemy);
-				this.score += 20;
-			}
-			projectile.remove();
-		});
-
-		// Enemies projectile hits player
-		this.enemyProjectiles.collide(this.player, (projectile, player) => {
-			this.destroyPlayer(player);
-			projectile.remove();
-
-			console.log('lives: ' + this.lives);
-		});
-
-
-		// ---- Player/Enemy Collision ---- //
-
-		// player collides with enemy
-		this.enemies.collide(this.player, (enemy, player) => {
-			this.destroyEnemy(enemy);
-			this.destroyPlayer(player);
-		});
+				this.destroyPlayer(player);
+			});
+		}
 	}
 
 	automation(){
@@ -218,7 +226,20 @@ class GameState {
 			}
 		});
 
-		// Display the score
-		
+		// Display the score and lives at top of canvas
+		fill(170,170,17);
+		textSize(16);
+		text(('Score: ' + this.score), width-70, 20);
+		text(('Lives: ' + this.lives), 20, 20);
+
+		// Check if player is dead... display game over
+		if (!this.playing && this.lives <= 0){
+			fill(170,170,17);
+			textSize(36);
+			textAlign(CENTER);
+			text('GAME OVER', width/2, height/2);
+			textSize(22);
+			text('Final Score: ' + this.score, width/2, height/1.5);
+		}
 	}
 }

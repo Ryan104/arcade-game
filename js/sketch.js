@@ -18,8 +18,7 @@ function setup(){
 	// Setup the game state (lives, level#, enemy patterns, score, etc)
 	gameState = new GameState(3); // Init with 3 lives
 
-
-	// Create player ship
+	// Start at level 0
 	gameState.startLevel(0);
 
 
@@ -29,17 +28,9 @@ function setup(){
 function draw(){
 	background(0); // black
 
-	gameState.automation(); // keeps star background scrolling
-	gameState.playerInputs();
-	gameState.collisions();
-
-	fill(170,170,17);
-	textSize(16);
-	text(('Score: ' + gameState.score), width-70, 20);
-
-	text(('Lives: ' + gameState.lives), 20, 20);
+	gameState.automation(); // handles enemy movement and displaying score/lives
+	gameState.playerInputs(); // handles keyborad inputs
+	gameState.collisions();	// Handles all things that have to do with collision
 
 	drawSprites(); // draws all sprites to canvas (p5.play.js)
-
-
 }
