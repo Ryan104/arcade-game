@@ -181,7 +181,15 @@ class GameState {
 			enemy.remove();
 			this.currentEnemyCount -= 1;
 			console.log(this.currentEnemyCount);
+		});
 
+		// player collides with enemy
+		this.enemies.collide(this.player, (enemy, player) => {
+			player.remove();
+			this.lives -= 1;
+			console.log(this.lives);
+			enemy.remove();
+			this.createPlayer();
 		});
 
 		// move the background
