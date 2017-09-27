@@ -86,6 +86,8 @@ function setup(){
 	let canvas = createCanvas(350,465);
 	canvas.parent(document.getElementById('canvas-container'));
 
+
+	// Load sprite image
 	basicPlayerImg = loadImage('../assets/images/ship-std.png');
 
 	// Setup the game state (lives, level#, enemy patterns, score, etc)
