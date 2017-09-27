@@ -8,6 +8,8 @@ let gameState;
 
 let allScores;
 
+let basicPlayerImg;
+
 // Initialize the scores
 if (window.localStorage.getItem('scores')){
 	// set scores to saved scores if they exist
@@ -74,9 +76,10 @@ function startGame(){
 	loop();
 }
 
-// function preload(){
-
-// }
+ function preload(){
+// Load sprite image
+	basicPlayerImg = loadImage('assets/images/ship-std.png');
+ }
 
 
 function setup(){
@@ -85,10 +88,6 @@ function setup(){
 	// Create canvas and append to document
 	let canvas = createCanvas(350,465);
 	canvas.parent(document.getElementById('canvas-container'));
-
-
-	// Load sprite image
-	basicPlayerImg = loadImage('../assets/images/ship-std.png');
 
 	// Setup the game state (lives, level#, enemy patterns, score, etc)
 	gameState = new GameState(3); // Init with 3 lives
