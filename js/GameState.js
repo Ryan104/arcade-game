@@ -56,7 +56,8 @@ class GameState {
 	createPlayer(){
 		console.log('creating player');
 		let player = createSprite(width/2, height-50, 25, 25);
-		player.shapeColor = color(255,0,0);
+		player.addImage(basicPlayerImg, playerStd);
+		//player.shapeColor = color(255,0,0);
 		//player.immovable = true;
 
 		return player;

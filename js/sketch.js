@@ -74,6 +74,10 @@ function startGame(){
 	loop();
 }
 
+// function preload(){
+
+// }
+
 
 function setup(){
 	console.log('Running setup()');
@@ -81,6 +85,8 @@ function setup(){
 	// Create canvas and append to document
 	let canvas = createCanvas(350,465);
 	canvas.parent(document.getElementById('canvas-container'));
+
+	basicPlayerImg = loadImage('../assets/images/ship-std.png');
 
 	// Setup the game state (lives, level#, enemy patterns, score, etc)
 	gameState = new GameState(3); // Init with 3 lives
