@@ -138,9 +138,9 @@ class GameState {
 
 		// Create enemies based off levelContents
 		this.createEnemyGroup(50,50,this.currentEnemyCount);
-
-
 	}
+
+	
 
 	playerInputs(){
 		// Player movement
@@ -248,6 +248,7 @@ class GameState {
 
 		// Move to next level if all enemies gone
 		if (this.playing && this.currentEnemyCount === 0){
+			this.score += this.level * 15;
 			this.level += 1;
 			this.startLevel(this.level);
 
