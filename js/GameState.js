@@ -7,6 +7,7 @@ class GameState {
 		this.level = level; // the curent level
 		this.score = score; // The player's score
 		this.player = this.createPlayer();
+		this.message = "GO!";
 
 		this.enemies = new Group();
 
@@ -23,6 +24,15 @@ class GameState {
 			},
 			{
 				enemyCount: 5
+			},
+			{
+				enemyCount: 6
+			},
+			{
+				enemyCount: 6
+			},
+			{
+				enemyCount: 6
 			}
 		];
 
@@ -132,20 +142,21 @@ class GameState {
 	// Start a level
 	startLevel(levelNumber){
 		this.playing = true;
-		console.log('starting level ' + levelNumber);
-		this.level = levelNumber;
-		this.currentEnemyCount = this.levelContents[levelNumber].enemyCount;
+		console.log('starting level ' + this.level);
+		//this.level = levelNumber;
+		this.currentEnemyCount = this.levelContents[this.level].enemyCount;
 
 		// Create enemies based off levelContents
 		this.createEnemyGroup(50,50,this.currentEnemyCount);
 	}
 
-	increaseScore(points){
+	increaseScore(points, prefix=""){
 		this.score += points;
-		fill(170,170,17);
-		textSize(16);
-		textAlign(CENTER);
-		text('+' + points + ' points', width/2, 50);
+		// fill(170,170,17);
+		// textSize(16);
+		// textAlign(CENTER);
+		// text('+' + points + ' points', width/2, 50);
+		this.message = prefix + ' (+' + points + ' points)';
 	}
 
 	playerInputs(){
@@ -203,7 +214,7 @@ class GameState {
 				enemy.health -= 1;
 				if (enemy.health <= 0){
 					this.destroyEnemy(enemy);
-					this.increaseScore(20);
+					this.increaseScore(20, 'Destroyed Enemy');
 				}
 				projectile.remove();
 			});
@@ -241,6 +252,8 @@ class GameState {
 		textSize(16);
 		text(('Score: ' + this.score), width-90, 20);
 		text(('Lives: ' + this.lives), 20, 20);
+		textAlign(CENTER);
+		text(this.message, width/2, 50);
 
 		// Check if player is dead... display game over
 		if (!this.playing && this.lives <= 0){
@@ -254,8 +267,11 @@ class GameState {
 
 		// Move to next level if all enemies gone
 		if (this.playing && this.currentEnemyCount === 0){
-			this.increaseScore(this.level * 15);
+			this.increaseScore(this.level * 15, 'Level ' + (this.level+1));
 			this.level += 1;
+			if (this.level % 3 === 0 && this.level !== 0){ 
+				this.lives += 1;
+			}
 			this.startLevel(this.level);
 
 		}
