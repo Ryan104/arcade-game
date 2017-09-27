@@ -14,23 +14,8 @@ if (window.localStorage.getItem('scores')){
 	allScores = JSON.parse(window.localStorage.getItem('scores'));
 } else {
 	// if there isnt any localstorage scores, create it
-	allScores = [
-		{
-			name: 'Ryan',
-			score: 200,
-			id: 0
-		},
-		{
-			name: 'Ryan',
-			score: 30,
-			id: 1
-		}
-	];
-	window.localStorage.setItem('scores', JSON.stringify(allScores));
+	clearScores();
 }
-
-// Add the new player to the score list
-allScores.push({name: 'Ry', score: 0, id: allScores.length});
 
 document.addEventListener("DOMContentLoaded", function() {
 	// Display high score list after the page finishes loading
@@ -62,11 +47,28 @@ function displayScores(scores){
 	tableElement.innerHTML = html;
 }
 
+function clearScores(){
+	// re initialize the highscores
+	allScores = [
+		{
+			name: 'Ryan',
+			score: 100,
+			id: 0
+		}
+	];
+	window.localStorage.setItem('scores', JSON.stringify(allScores));
+	displayScores(allScores);
+}
+
 
 function startGame(){
 	// Hide the form and start the game
 	document.getElementById('start').style.display = 'none';
 	document.getElementById('canvas-container').style.display = 'block';
+
+	// Add the new player to the score list
+	let userName = document.getElementById('nameInput').value;
+	allScores.push({name: userName, score: 0, id: allScores.length});
 
 	// Start the game
 	loop();

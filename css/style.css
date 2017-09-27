@@ -41,6 +41,8 @@ aside {
 	max-width: 350px;
 	display: flex;
 	flex-direction: column;
+	border-left: 2px solid #aa1;
+	border-right: 2px solid #aa1;
 }
 
 #start * {
@@ -56,4 +58,9 @@ aside {
 	height: 30px;
 	color: #222;
 	background-color: #aa1;
+}
+
+#start .danger {
+	color: red;
+	font-style: bold;
 }
