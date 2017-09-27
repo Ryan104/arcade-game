@@ -7,6 +7,57 @@
 let gameState;
 let player;
 
+// Initialize the scores
+let allScores = [
+	{
+		name: 'RRR',
+		score: 100,
+		id: 0
+	},
+	{
+		name: 'CCC',
+		score: 200,
+		id: 1
+	},
+	{
+		name: 'OOO',
+		score: 500,
+		id: 2
+	}
+];
+
+allScores.push({name: 'Ry', score: 0, id: allScores.length});
+
+console.log(allScores);
+
+// Sort the scores array by their score property
+function sortScores(scoresArr, sortBy){
+	return scoresArr.sort((a, b) => {
+		if (a[sortBy] < b[sortBy]){
+			return 1;
+		} else if (a[sortBy] > b[sortBy]){
+			return -1;
+		} else {
+			return 0;
+		}
+	});
+}
+
+// Add scores to table
+function displayScores(scores){
+	sortScores(scores, 'score');
+	let tableElement = document.getElementById('scoreTable');
+	let html = '<thead><tr><th>Player</th><th>Score</th></tr></thead>'; // table header
+	scores.forEach((scoreObj) => {
+		html += `<tr><td>${scoreObj.name}</td><td>${scoreObj.score}</td></tr>`;
+	});
+
+	tableElement.innerHTML = html;
+}
+
+
+
+
 
 function setup(){
 	console.log('Running setup()');

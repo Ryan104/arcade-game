@@ -151,12 +151,17 @@ class GameState {
 	}
 
 	increaseScore(points, prefix=""){
+		// increaseScore() - add to the score property, dispays a notification, and updates the highscore board
+		// Increase the score property
 		this.score += points;
-		// fill(170,170,17);
-		// textSize(16);
-		// textAlign(CENTER);
-		// text('+' + points + ' points', width/2, 50);
+		// Display message when user scores points
 		this.message = prefix + ' (+' + points + ' points)';
+
+		// Add score to the the scores element with the largest ID (the most recent one)
+		sortScores(allScores, 'id');
+		allScores[0].score = this.score;
+		// display all the scores
+		displayScores(allScores);
 	}
 
 	playerInputs(){
@@ -263,6 +268,7 @@ class GameState {
 			text('GAME OVER', width/2, height/2);
 			textSize(22);
 			text('Final Score: ' + this.score, width/2, height/1.5);
+
 		}
 
 		// Move to next level if all enemies gone
