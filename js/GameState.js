@@ -2,11 +2,11 @@ console.log('GameState.js');
 
 class GameState {
 	constructor(lives, level=0, score=0){
-		this.playing = true;
+		this.playing = false;
 		this.lives = lives; // The player's remaining lives
 		this.level = level; // the curent level
 		this.score = score; // The player's score
-		this.player;
+		this.player = this.createPlayer();
 
 		this.enemies = new Group();
 
@@ -16,7 +16,13 @@ class GameState {
 		// levelContents -- how many enemies appear each level, etc
 		this.levelContents = [
 			{
+				enemyCount: 3
+			},
+			{
 				enemyCount: 4
+			},
+			{
+				enemyCount: 5
 			}
 		];
 
@@ -125,12 +131,10 @@ class GameState {
 
 	// Start a level
 	startLevel(levelNumber){
+		this.playing = true;
 		console.log('starting level ' + levelNumber);
 		this.level = levelNumber;
 		this.currentEnemyCount = this.levelContents[levelNumber].enemyCount;
-
-		// Create Player
-		this.player = this.createPlayer();
 
 		// Create enemies based off levelContents
 		this.createEnemyGroup(50,50,this.currentEnemyCount);
@@ -229,7 +233,7 @@ class GameState {
 		// Display the score and lives at top of canvas
 		fill(170,170,17);
 		textSize(16);
-		text(('Score: ' + this.score), width-70, 20);
+		text(('Score: ' + this.score), width-90, 20);
 		text(('Lives: ' + this.lives), 20, 20);
 
 		// Check if player is dead... display game over
@@ -240,6 +244,13 @@ class GameState {
 			text('GAME OVER', width/2, height/2);
 			textSize(22);
 			text('Final Score: ' + this.score, width/2, height/1.5);
+		}
+
+		// Move to next level if all enemies gone
+		if (this.playing && this.currentEnemyCount === 0){
+			this.level += 1;
+			this.startLevel(this.level);
+
 		}
 	}
 }
