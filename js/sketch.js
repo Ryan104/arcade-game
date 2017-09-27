@@ -5,7 +5,7 @@
 */
 
 let gameState;
-let player;
+
 let allScores;
 
 // Initialize the scores
@@ -29,30 +29,13 @@ if (window.localStorage.getItem('scores')){
 	window.localStorage.setItem('scores', JSON.stringify(allScores));
 }
 
-// let allScores = [
-// 	{
-// 		name: 'RRR',
-// 		score: 100,
-// 		id: 0
-// 	},
-// 	{
-// 		name: 'CCC',
-// 		score: 200,
-// 		id: 1
-// 	},
-// 	{
-// 		name: 'OOO',
-// 		score: 500,
-// 		id: 2
-// 	}
-// ];
-
-// window.localStorage.setItem('scores', JSON.stringify(allScores));
-// console.log(JSON.parse(window.localStorage.getItem('scores')));
-
-
 // Add the new player to the score list
 allScores.push({name: 'Ry', score: 0, id: allScores.length});
+
+document.addEventListener("DOMContentLoaded", function() {
+	// Display high score list after the page finishes loading
+  displayScores(allScores);
+});
 
 // Sort the scores array by their score property
 function sortScores(scoresArr, sortBy){
