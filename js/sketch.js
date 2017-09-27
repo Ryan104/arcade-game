@@ -6,29 +6,53 @@
 
 let gameState;
 let player;
+let allScores;
 
 // Initialize the scores
-let allScores = [
-	{
-		name: 'RRR',
-		score: 100,
-		id: 0
-	},
-	{
-		name: 'CCC',
-		score: 200,
-		id: 1
-	},
-	{
-		name: 'OOO',
-		score: 500,
-		id: 2
-	}
-];
+if (window.localStorage.getItem('scores')){
+	// set scores to saved scores if they exist
+	allScores = JSON.parse(window.localStorage.getItem('scores'));
+} else {
+	// if there isnt any localstorage scores, create it
+	allScores = [
+		{
+			name: 'Ryan',
+			score: 200,
+			id: 0
+		},
+		{
+			name: 'Ryan',
+			score: 30,
+			id: 1
+		}
+	];
+	window.localStorage.setItem('scores', JSON.stringify(allScores));
+}
 
+// let allScores = [
+// 	{
+// 		name: 'RRR',
+// 		score: 100,
+// 		id: 0
+// 	},
+// 	{
+// 		name: 'CCC',
+// 		score: 200,
+// 		id: 1
+// 	},
+// 	{
+// 		name: 'OOO',
+// 		score: 500,
+// 		id: 2
+// 	}
+// ];
+
+// window.localStorage.setItem('scores', JSON.stringify(allScores));
+// console.log(JSON.parse(window.localStorage.getItem('scores')));
+
+
+// Add the new player to the score list
 allScores.push({name: 'Ry', score: 0, id: allScores.length});
-
-console.log(allScores);
 
 // Sort the scores array by their score property
 function sortScores(scoresArr, sortBy){

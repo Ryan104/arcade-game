@@ -162,6 +162,8 @@ class GameState {
 		allScores[0].score = this.score;
 		// display all the scores
 		displayScores(allScores);
+		// save scores to localStorage
+		window.localStorage.setItem('scores', JSON.stringify(allScores));
 	}
 
 	playerInputs(){
