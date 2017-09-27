@@ -63,7 +63,14 @@ function displayScores(scores){
 }
 
 
+function startGame(){
+	// Hide the form and start the game
+	document.getElementById('start').style.display = 'none';
+	document.getElementById('canvas-container').style.display = 'block';
 
+	// Start the game
+	loop();
+}
 
 
 function setup(){
@@ -79,7 +86,7 @@ function setup(){
 	// Start at level 0
 	gameState.startLevel(0);
 
-
+	noLoop(); // dont start the game untill the button is pressed
 
 }
 
