@@ -9,6 +9,8 @@ let gameState;
 let allScores;
 
 let basicPlayerImg;
+let basicEnemyImg;
+let redLaserImg;
 
 // Initialize the scores
 if (window.localStorage.getItem('scores')){
@@ -79,6 +81,8 @@ function startGame(){
  function preload(){
 // Load sprite image
 	basicPlayerImg = loadImage('assets/images/ship-std.png');
+	basicEnemyImg = loadImage('assets/images/enemy-std.png');
+	redLaserImg = loadImage('assets/images/red-laser.png');
  }
 
 

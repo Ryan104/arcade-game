@@ -71,7 +71,8 @@ class GameState {
 
 		for (let i=0; i<n; i++){
 			let enemy = createSprite(x+i*50,y, 10, 10);
-			enemy.shapeColor = color(100, 255, 0);
+			enemy.addImage(basicEnemyImg, 'enemyStd');
+			//enemy.shapeColor = color(100, 255, 0);
 			enemy.health = 3;
 
 			// enemy projectiles
@@ -116,6 +117,7 @@ class GameState {
 			this.playerProjectiles.add(newProjectile);
 		} else if (whoShot === 'enemy'){
 			newProjectile.setVelocity(0, vel);
+			//newProjectile.addImage(redLaserImg, 'enemy laser');
 			newProjectile.shapeColor = color(255,0,0);
 			this.enemyProjectiles.add(newProjectile);
 		}
