@@ -25,8 +25,17 @@ main {
 }
 
 aside {
-	padding: 10px;
-	width: 250px;
+	padding: 6%;
+	width: 100%;
+}
+
+.key-command {
+	display: flex;
+	flex-direction: row;
+}
+
+.key-command img {
+	width: 50px;
 }
 
 #canvas-container{
@@ -36,7 +45,7 @@ aside {
 }
 
 #start {
-	width: 350px;
+	min-width: 350px;
 	height: 450px;
 	max-width: 350px;
 	display: flex;
