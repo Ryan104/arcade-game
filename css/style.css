@@ -2,7 +2,7 @@ body {
 	box-sizing: border-box;
 	margin: 0;
 	font-family: 'Roboto', sans-serif;
-	background-image: url('../assets/images/earth-space.jpg');
+
 
 }
 
@@ -31,6 +31,9 @@ main {
 	display: flex;
 	color: #aa1;
 	justify-content: center;
+	background-image: url('../assets/images/earth-space.jpeg');
+	background-position: center;
+	background-size: cover;
 }
 
 aside, article {
