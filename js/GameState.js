@@ -130,10 +130,10 @@ class GameState {
 		// creates boundaries for the game board - useful for detecting when objects leave the playing field
 		// TODO: Make borders transparent
 		let borders = new Group();
-		borders.add(createSprite(width/2, height, width, 2)); // Bottom
-		borders.add(createSprite(width/2, 0, width, 2)); // Top
-		borders.add(createSprite(width, height/2, 2, height)); // Right
-		borders.add(createSprite(0, height/2, 2, height)); // Left
+		borders.add(createSprite(width/2, height, width, 0)); // Bottom
+		borders.add(createSprite(width/2, 0, width, 0)); // Top
+		borders.add(createSprite(width, height/2, 0, height)); // Right
+		borders.add(createSprite(0, height/2, 0, height)); // Left
 
 		for (let i=0;i<4;i++){
 			//borders[i].immovable = true;

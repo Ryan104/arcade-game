@@ -11,7 +11,7 @@ header, footer {
 	align-items: center;
 	color: #aa1;
 	background-color: #222;
-	height: 15vh;
+	height: 16vh;
 }
 
 header {
@@ -36,12 +36,13 @@ h3 {
 
 main {
 	display: flex;
-	height: 70vh;
+	height: 68vh;
 	color: #aa1;
 	justify-content: center;
 	background-image: url('../assets/images/earth-space.jpeg');
 	background-position: center;
 	background-size: cover;
+	background-color: rgba(34,34,34,.5);
 }
 
 aside{
@@ -50,7 +51,7 @@ aside{
 }
 
 .container {
-	background-color: rgba(34,34,34,.5);
+	
 	padding: 5px 10px;
 }
 
