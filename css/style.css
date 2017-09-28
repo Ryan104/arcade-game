@@ -2,24 +2,31 @@ body {
 	box-sizing: border-box;
 	margin: 0;
 	font-family: 'Roboto', sans-serif;
-	width: 100vw;
+}
 
+header, footer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: #aa1;
+	background-color: #222;
+	height: 15vh;
 }
 
 header {
-	margin: 0;
-	padding: 30px;
-	color: #aa1;
-	background-color: #222;
 	border-bottom: 2px solid #aa1;
-	background-position: fill;
+}
+
+footer {
+	border-top: 2px solid #aa1;
 }
 
 h1 {
 	margin: 0;
-	text-align: center;
 	font-family: 'Press Start 2P', cursive;
-	text-shadow: 3px 3px 9px #222;
+	text-shadow: 3px 3px 1px #000;
+	font-size: 46px;
 }
 
 h3 {
@@ -29,6 +36,7 @@ h3 {
 
 main {
 	display: flex;
+	height: 70vh;
 	color: #aa1;
 	justify-content: center;
 	background-image: url('../assets/images/earth-space.jpeg');
@@ -103,8 +111,8 @@ tr :first-child {
 	width: 100%;
 }
 
-.name-form .danger {
-	color: red;
-	font-style: bold;
-	width: 50%;
+article {
+
 }
+
+
