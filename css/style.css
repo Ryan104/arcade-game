@@ -2,37 +2,45 @@ body {
 	box-sizing: border-box;
 	margin: 0;
 	font-family: 'Roboto', sans-serif;
+	background-image: url('../assets/images/earth-space.jpg');
+
 }
 
 header {
 	margin: 0;
 	padding: 30px;
-	background-color: #222;
 	color: #aa1;
-	box-shadow: 3px 3px 5px #aa1;
+	background-color: #222;
 	border-bottom: 2px solid #aa1;
+	background-position: fill;
 }
 
 h1 {
 	margin: 0;
 	text-align: center;
 	font-family: 'Press Start 2P', cursive;
+	text-shadow: 3px 3px 9px #222;
 }
 
 h3 {
 	font-family: 'Press Start 2P', cursive;
+	text-shadow: 3px 3px 9px #222;
 }
 
 main {
 	display: flex;
-	background-color: #222;
 	color: #aa1;
 	justify-content: center;
 }
 
-aside {
+aside, article {
 	padding: 2% 6%;
 	width: 100%;
+}
+
+.container {
+	background-color: rgba(34,34,34,.5);
+	padding: 5px 10px;
 }
 
 table * {
