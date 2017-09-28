@@ -46,7 +46,7 @@ class GameState {
 		for (let i=0; i<20; i++){
 			let randSize = random(2,6);
 			let star = createSprite(random(width), random(height), randSize, randSize);
-			star.setVelocity(0, 2); // move toward bottom of screen to simulate movement
+			star.setVelocity(0, 1.3); // move toward bottom of screen to simulate movement
 			star.shapeColor = color(random(200,255), random(200,255), random(200,255));
 			this.starBackground.add(star);
 		}
@@ -54,15 +54,12 @@ class GameState {
 
 	// Create a player instance
 	createPlayer(){
-		console.log('creating player');
 		let player = createSprite(width/2, height-50, 25, 25);
 		player.addImage(basicPlayerImg, 'playerStd');
 		//player.shapeColor = color(255,0,0);
-		//player.immovable = true;
 
 		return player;
 	}
-
 
 	// Create an enemy instance
 	createEnemyGroup(x,y,n){
@@ -70,21 +67,18 @@ class GameState {
 		let enemyGroup = new Group();
 
 		for (let i=0; i<n; i++){
-			let enemy = createSprite(x+i*50,y, 10, 10);
-			enemy.addImage(basicEnemyImg, 'enemyStd');
-			//enemy.shapeColor = color(100, 255, 0);
-			enemy.health = 3;
+			let enemy = createSprite(x+i*50, y, 10, 10);  // create new enemeis spaced across field
+			
+			enemy.addImage(basicEnemyImg, 'enemyStd');  // add a sprite image
+			
+			//enemy.shapeColor = color(100, 255, 0);  // no sprite image
 
-			// enemy projectiles
+			enemy.health = 3;  // enemies can take 3 hits
 
-
-			// enemies slowly move to bottom of screen
-			enemy.setVelocity(0,0.5);
-
-			this.enemies.add(enemy);
-		}
+			enemy.setVelocity(0,0.5);  // enemies slowly move to bottom of screen
 		
-
+			this.enemies.add(enemy);  // add the enemies to the group for collision detection
+		}
 		return enemyGroup;
 	}
 
@@ -93,15 +87,22 @@ class GameState {
 		this.currentEnemyCount -= 1;
 	}
 
-	destroyPlayer(player){
+	destroyPlayer(player){ // when the player dies...
+		// create an exploding animation
+		let death = createSprite(player.position.x, player.position.y, 20, 20);
+		death.addImage(deathImg);
+		death.life = 50;
+
+		// remove the player sprite from the game
 		player.remove();
+
+		// If there are any lives left - create a new player sprite, else the game is over
 		this.lives -= 1;
 		if (this.lives > 0){
 			this.player = this.createPlayer();
 		} else {
 			this.playing = false;
 		}
-		
 	}
 
 	createProjectile(whoShot, x, y, vel=2){

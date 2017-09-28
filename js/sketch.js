@@ -6,6 +6,7 @@ let allScores;
 let basicPlayerImg;
 let basicEnemyImg;
 let redLaserImg;
+let deathImg;
 
 // Initialize the scores
 if (window.localStorage.getItem('scores')){
@@ -78,6 +79,7 @@ function startGame(){
 	basicPlayerImg = loadImage('assets/images/ship-std.png');
 	basicEnemyImg = loadImage('assets/images/enemy-std.png');
 	redLaserImg = loadImage('assets/images/red-laser.png');
+	deathImg = loadImage('assets/images/expl-3.png');
  }
 
 
