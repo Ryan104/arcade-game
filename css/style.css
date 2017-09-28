@@ -32,22 +32,23 @@ h1 {
 h3 {
 	font-family: 'Press Start 2P', cursive;
 	text-shadow: 3px 3px 9px #222;
+	color: #aa1;
+	font-size: 24px;
 }
 
 main {
 	display: flex;
 	height: 68vh;
-	color: #aa1;
+	color: #ddd;
 	justify-content: center;
 	background-image: url('../assets/images/earth-space.jpeg');
 	background-position: center;
 	background-size: cover;
-	background-color: rgba(34,34,34,.5);
 }
 
 aside{
-	padding: 2% 6%;
 	width: 100%;
+	background-color: rgba(34,34,34,.5);
 }
 
 .container {
