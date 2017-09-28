@@ -177,10 +177,10 @@ class GameState {
 
 	playerInputs(){
 		// Player movement
-		if (keyIsDown(65)){ // 65 == a
+		if (keyIsDown(65) || keyIsDown(37)){ // 65 == a
 			this.player.position.x -= 2;
 		}
-		if (keyIsDown(68)){
+		if (keyIsDown(68) || keyIsDown(39)){
 			this.player.position.x += 2;
 		}
 		// Player fire
