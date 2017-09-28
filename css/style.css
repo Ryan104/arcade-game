@@ -51,8 +51,21 @@ aside{
 	background-color: rgba(34,34,34,.5);
 }
 
+.bezel {
+	width: 20vw;
+	height: 100%;
+	background: #aa1;
+}
+
+.bezel-right {
+	background: linear-gradient(to right, #aa1, #222);
+}
+
+.bezel-left {
+	background: linear-gradient(to left, #aa1, #222);
+}
+
 .container {
-	
 	padding: 5px 10px;
 }
 
