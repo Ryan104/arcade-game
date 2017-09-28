@@ -117,8 +117,8 @@ class GameState {
 			this.playerProjectiles.add(newProjectile);
 		} else if (whoShot === 'enemy'){
 			newProjectile.setVelocity(0, vel);
-			//newProjectile.addImage(redLaserImg, 'enemy laser');
-			newProjectile.shapeColor = color(255,0,0);
+			newProjectile.addImage(redLaserImg, 'enemy laser');
+			//newProjectile.shapeColor = color(255,0,0);
 			this.enemyProjectiles.add(newProjectile);
 		}
 

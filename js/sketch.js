@@ -1,13 +1,8 @@
-// Canvas manipulation code goes here
-/* 2 main functions: 
-	setup() - runs on load 
-	draw() - runs every frame
-*/
-
+// Initialize objets
 let gameState;
-
 let allScores;
 
+// Initialize image variables
 let basicPlayerImg;
 let basicEnemyImg;
 let redLaserImg;
@@ -15,7 +10,7 @@ let redLaserImg;
 // Initialize the scores
 if (window.localStorage.getItem('scores')){
 	// set scores to saved scores if they exist
-	allScores = JSON.parse(window.localStorage.getItem('scores'));
+	allScores = JSON.parse(window.localStorage.scores);
 } else {
 	// if there isnt any localstorage scores, create it
 	clearScores();
