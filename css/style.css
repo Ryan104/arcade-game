@@ -1,6 +1,7 @@
 body {
 	box-sizing: border-box;
 	margin: 0;
+	font-family: 'Roboto', sans-serif;
 }
 
 header {
@@ -15,6 +16,11 @@ header {
 h1 {
 	margin: 0;
 	text-align: center;
+	font-family: 'Press Start 2P', cursive;
+}
+
+h3 {
+	font-family: 'Press Start 2P', cursive;
 }
 
 main {
@@ -25,8 +31,12 @@ main {
 }
 
 aside {
-	padding: 6%;
+	padding: 2% 6%;
 	width: 100%;
+}
+
+table * {
+	padding: 10px;
 }
 
 .key-command {
@@ -35,7 +45,8 @@ aside {
 }
 
 .key-command img {
-	width: 50px;
+	width: auto;
+	max-height: 50px;
 }
 
 #canvas-container{
@@ -47,29 +58,38 @@ aside {
 #start {
 	min-width: 350px;
 	height: 450px;
-	max-width: 350px;
-	display: flex;
-	flex-direction: column;
 	border-left: 2px solid #aa1;
 	border-right: 2px solid #aa1;
 }
 
-#start * {
-	margin: 0 20px;
+.name-form {
+	width: 300px;
+	height: 100%;
+	margin: 0 auto;
+	font-size: 24px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
-#start label {
+.name-form label {
 	margin-top: 30px;
 }
 
-#start button {
-	margin: 10px;
+.name-form input {
+	height: 30px;
+}
+
+.name-form button {
+	margin: 10px 0;
 	height: 30px;
 	color: #222;
 	background-color: #aa1;
+	width: 100%;
 }
 
-#start .danger {
+.name-form .danger {
 	color: red;
 	font-style: bold;
+	width: 50%;
 }

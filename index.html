@@ -7,6 +7,8 @@
 	<title>P1</title>
 
 	<!--  STYLES -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 	<link rel="stylesheet" href="css/style.css">
 
 	<!-- SCRIPTS -->
@@ -47,10 +49,11 @@
 		<div id="canvas-container">
 		</div>
 		<div id="start">
-			<label>Player Name:</label>
-			<input type="text" id="nameInput" value="Player 1">
-			<button onclick="startGame()">START</button>
-			<button onclick="clearScores()" class="danger">CLEAR ALL SCORES</button>
+			<form class="name-form">
+				<label for="nameInput">Player Name:</label>
+				<input type="text" id="nameInput" value="Player 1">
+				<button onclick="startGame()">START</button>
+			</form>
 		</div>
 
 		<aside>
@@ -63,6 +66,7 @@
 					</tr>
 				</thead>
 			</table>
+			<button onclick="clearScores()" class="danger">CLEAR ALL SCORES</button>
 		</aside>
 
 	</main>
