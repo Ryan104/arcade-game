@@ -147,8 +147,13 @@ class GameState {
 	startLevel(levelNumber){
 		this.playing = true;
 		console.log('starting level ' + this.level);
-		//this.level = levelNumber;
-		this.currentEnemyCount = this.levelContents[this.level].enemyCount;
+
+		// repeat level 6
+		if (this.level > 5){
+			this.currentEnemyCount = this.levelContents[5].enemyCount;
+		} else {
+			this.currentEnemyCount = this.levelContents[this.level].enemyCount;
+		}
 
 		// Create enemies based off levelContents
 		this.createEnemyGroup(50,50,this.currentEnemyCount);

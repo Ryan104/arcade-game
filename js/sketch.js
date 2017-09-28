@@ -47,8 +47,9 @@ function displayScores(scores){
 	tableElement.innerHTML = html;
 }
 
+// Function linked to 'CLEAR SCORES' button
 function clearScores(){
-	// re initialize the highscores
+	// re-initialize the highscores
 	allScores = [
 		{
 			name: 'Ryan',
@@ -60,7 +61,7 @@ function clearScores(){
 	displayScores(allScores);
 }
 
-
+// Function linked to 'START' button
 function startGame(){
 	// Hide the form and start the game
 	document.getElementById('start').style.display = 'none';
@@ -85,6 +86,7 @@ function startGame(){
 
 function setup(){
 	console.log('Running setup()');
+	noCursor();
 
 	// Create canvas and append to document
 	let canvas = createCanvas(350,465);
