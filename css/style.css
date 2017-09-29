@@ -73,6 +73,10 @@ h3 {
 	font-size: 24px;
 }
 
+a {
+	color: #aa1;
+}
+
 table * {
 	padding: 4px 10px;
 }
