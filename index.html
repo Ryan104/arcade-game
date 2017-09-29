@@ -29,6 +29,7 @@
 	<main>
 		<aside class="instructions">
 			<div class="container">
+				<!--
 				<h3>Instructions:</h3>
 				<p>Enter your name and press the START button to begin the game.</p>
 				<div class="key-command">
@@ -44,21 +45,31 @@
 					<p>: to FIRE your weapons</p>
 				</div>
 				<p><i>Try to take out as many enemies as possible without getting hit yourself!</i></p>
+			-->
 			</div>
 		</aside>
 
 		<div class="bezel bezel-left">
 		</div>
 
-		<div id="canvas-container">
-		</div>
+		<div class="centerpiece">
 
-		<div id="start">
-			<div class="name-form">
-				<h3>Player Name: </h3>
-				<input type="text" id="nameInput" value="Player 1">
-				<button onclick="startGame()">START</button>
+			<div id="canvas-container">
 			</div>
+
+			<div id="start">
+				<form onsubmit="startGame(); return false;" class="name-form">
+					<input type="text" id="nameInput" placeholder="Player Name" required>
+					<input type="submit" id="submitName" value="START">
+				</form>
+			</div>
+
+			<div class="bottom-instructions">
+				<img src="assets/images/akey.png" alt="A key left">
+				<img src="assets/images/space.png" alt="Space bar">
+				<img src="assets/images/dkey.png" alt="A key left">
+			</div>
+
 		</div>
 
 		<div class="bezel bezel-right">

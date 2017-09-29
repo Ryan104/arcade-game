@@ -20,6 +20,15 @@ if (window.localStorage.getItem('scores')){
 document.addEventListener("DOMContentLoaded", function() {
 	// Display high score list after the page finishes loading
   displayScores(allScores);
+
+  // document.getElementById("submitName").addEventListener("click", (event) => {
+  // 	event.preventDefault();
+  // 	if (document.getElementById("nameInput").value){
+  		
+  // 	}
+  	
+  // });
+
 });
 
 // Sort the scores array by their score property
@@ -62,6 +71,8 @@ function clearScores(){
 }
 
 // Function linked to 'START' button
+
+
 function startGame(){
 	// Hide the form and start the game
 	document.getElementById('start').style.display = 'none';

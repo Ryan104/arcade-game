@@ -15,11 +15,11 @@ header, footer {
 }
 
 header {
-	border-bottom: 2px solid #aa1;
+	border-bottom: 5px solid #aa1;
 }
 
 footer {
-	border-top: 2px solid #aa1;
+	border-top: 5px solid #aa1;
 }
 
 h1 {
@@ -48,7 +48,7 @@ main {
 
 aside{
 	width: 100%;
-	background-color: rgba(34,34,34,.5);
+	background-color: rgba(34,34,34,.25); /* #222 */
 }
 
 .bezel {
@@ -57,16 +57,13 @@ aside{
 	background: #aa1;
 }
 
-.bezel-right {
-	background: linear-gradient(to right, #aa1, #222);
-}
-
-.bezel-left {
-	background: linear-gradient(to left, #aa1, #222);
-}
-
 .container {
+	height: 100%;
 	padding: 5px 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 table * {
@@ -93,15 +90,12 @@ tr :first-child {
 
 #canvas-container{
 	display: none;
-	border-left: 2px solid #aa1;
-	border-right: 2px solid #aa1;
+	height: 465px;
 }
 
 #start {
 	min-width: 350px;
-	height: 450px;
-	border-left: 2px solid #aa1;
-	border-right: 2px solid #aa1;
+	height: 465px;
 }
 
 .name-form {
@@ -126,8 +120,23 @@ tr :first-child {
 	width: 100%;
 }
 
-article {
+.centerpiece {
+	display: flex;
+	flex-direction: column;
+}
 
+.bottom-instructions {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	background-color: #222;
+}
+
+.bottom-instructions img {
+	height: 40%;
 }
 
 
