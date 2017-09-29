@@ -4,6 +4,7 @@
 
 
 try it here: https://p1-arcade.herokuapp.com/
+or here: http://ryandelliott.com/arcade-game/
 
 ### Inspiration
 This game was inspiration by my favorite [vertically scrolling](https://en.wikipedia.org/wiki/Vertically_scrolling_video_game) arcade shooters such as [Galaga](https://en.wikipedia.org/wiki/Galaga), [Space Invaders](https://en.wikipedia.org/wiki/Space_Invaders), [Yars Revenge](https://en.wikipedia.org/wiki/Yars%27_Revenge), [Sky Shark](https://en.wikipedia.org/wiki/Flying_Shark), and [1943](https://en.wikipedia.org/wiki/1943:_The_Battle_of_Midway).
