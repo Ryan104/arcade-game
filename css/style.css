@@ -1,5 +1,11 @@
-body {
+
+* {
 	box-sizing: border-box;
+}
+
+/* -- Main Sections -- */
+
+body {
 	margin: 0;
 	font-family: 'Roboto', sans-serif;
 }
@@ -22,20 +28,6 @@ footer {
 	border-top: 5px solid #aa1;
 }
 
-h1 {
-	margin: 0;
-	font-family: 'Press Start 2P', cursive;
-	text-shadow: 3px 3px 1px #000;
-	font-size: 46px;
-}
-
-h3 {
-	font-family: 'Press Start 2P', cursive;
-	text-shadow: 3px 3px 9px #222;
-	color: #aa1;
-	font-size: 24px;
-}
-
 main {
 	display: flex;
 	height: 68vh;
@@ -46,7 +38,7 @@ main {
 	background-size: cover;
 }
 
-aside{
+aside {
 	width: 100%;
 	background-color: rgba(34,34,34,.25); /* #222 */
 }
@@ -64,6 +56,20 @@ aside{
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+}
+
+h1 {
+	margin: 0;
+	font-family: 'Press Start 2P', cursive;
+	text-shadow: 3px 3px 1px #000;
+	font-size: 46px;
+}
+
+h3 {
+	font-family: 'Press Start 2P', cursive;
+	text-shadow: 3px 3px 9px #222;
+	color: #aa1;
+	font-size: 24px;
 }
 
 table * {
@@ -106,21 +112,38 @@ tr :first-child {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 }
 
-.name-form input {
-	height: 30px;
+#nameInput {
+	border-radius: 2px;
+	height: 35px;
+	max-width: 80%;
+	font-size: 18px;
+	font-family: 'Press Start 2P', cursive;
+	text-align: center;
+	border: none;
 }
 
-.name-form button {
+.btn {
 	margin: 10px 0;
-	height: 30px;
+	border: none;
+	border-radius: 2px;
+	height: auto;
 	color: #222;
+	width: 150px;
 	background-color: #aa1;
-	width: 100%;
+	outline: none;
+	font-family: 'Roboto', sans-serif;
+	font-size: 18px;
 }
 
-.centerpiece {
+.btn:hover {
+	animation: buttonHover;
+	animation-duration: 1s;
+}
+
+.centerpiece { /* where the game lives */
 	display: flex;
 	flex-direction: column;
 }
@@ -139,4 +162,14 @@ tr :first-child {
 	height: 40%;
 }
 
-
+@keyframes buttonHover {
+	0% {
+		background-color: #fff;
+	}
+	75% {
+		background-color: gradient(right, #fff, #aa1);
+	}
+	100% {
+		background-color: #aa1;
+	}
+}

@@ -29,26 +29,11 @@
 	<main>
 		<aside class="instructions">
 			<div class="container">
-				<!--
-				<h3>Instructions:</h3>
-				<p>Enter your name and press the START button to begin the game.</p>
-				<div class="key-command">
-					<img src="assets/images/akey.png" alt="A key left">
-					<p>: Move LEFT</p>
-				</div>
-				<div class="key-command">
-					<img src="assets/images/dkey.png" alt="A key left">
-					<p>: Move RIGHT</p>
-				</div>
-				<div class="key-command">
-					<img src="assets/images/space.png" alt="Space bar">
-					<p>: to FIRE your weapons</p>
-				</div>
-				<p><i>Try to take out as many enemies as possible without getting hit yourself!</i></p>
-			-->
+				<!-- instructions used to be here -->
 			</div>
 		</aside>
-
+		
+		<!-- Add space around game for emphasis -->
 		<div class="bezel bezel-left">
 		</div>
 
@@ -61,7 +46,7 @@
 				<form onsubmit="startGame(); return false;" class="name-form">
 					<!-- onsubmit return false needed to run startGame and also validate required data is entered -->
 					<input type="text" id="nameInput" placeholder="Player Name" required>
-					<input type="submit" id="submitName" value="START">
+					<input type="submit" id="submitName" value="START" class="btn start-btn">
 				</form>
 			</div>
 
@@ -73,12 +58,16 @@
 
 		</div>
 
+		<!-- Add space around game for emphasis -->
 		<div class="bezel bezel-right">
 		</div>
 
+		<!-- High scores on right side of game -->
 		<aside>
 			<div class="container">
+
 				<h3>High Scores:</h3>
+				<!-- This table is dynamically generated w/javascript -->
 				<table id="scoreTable">
 					<thead>
 						<tr>
@@ -87,7 +76,8 @@
 						</tr>
 					</thead>
 				</table>
-				<button onclick="clearScores()" class="danger">CLEAR ALL SCORES</button>
+
+				<button onclick="clearScores()" class="btn clear-btn">CLEAR</button>
 			</div>
 		</aside>
 
