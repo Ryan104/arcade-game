@@ -59,6 +59,7 @@
 
 			<div id="start">
 				<form onsubmit="startGame(); return false;" class="name-form">
+					<!-- onsubmit return false needed to run startGame and also validate required data is entered -->
 					<input type="text" id="nameInput" placeholder="Player Name" required>
 					<input type="submit" id="submitName" value="START">
 				</form>
