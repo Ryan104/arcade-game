@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<title>P1</title>
-	<link rel="shortcut icon" href="assets/images/ship-std.png"> 
+	<link rel="shortcut icon" href="assets/images/ship-std.png"> <!-- favicon -->
 
 	<!--  STYLES -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -28,26 +28,28 @@
 
 	<!-- Main Section (asides and canvas) -->
 	<main>
-		<aside class="instructions">
-			<div class="container">
-				<!-- instructions used to be here -->
-			</div>
+		<aside class="container">
+			<!-- used to contain instructions-->
 		</aside>
 		
 		<!-- Add space around game for emphasis -->
 		<div class="bezel bezel-left">
 		</div>
 
+		<!-- Name entry and game in the center -->
 		<div class="centerpiece">
 
 			<div id="canvas-container">
+				<!-- canvas goes here -->
 			</div>
 
+			<!-- User sees this when the page loads -->
 			<div id="start">
 				<form onsubmit="startGame(); return false;" class="name-form">
 					<!-- onsubmit return false needed to run startGame and also validate required data is entered -->
 					<input type="text" id="nameInput" placeholder="Player Name" required>
 					<input type="submit" id="submitName" value="START" class="btn start-btn">
+					<!-- Pressing start hides the name prompt and starts the game -->
 				</form>
 			</div>
 
@@ -83,12 +85,6 @@
 		</aside>
 
 	</main>
-
-
-	<!-- Game info section -->
-	<article>
-			
-	</article>
 
 	<!-- Footer -->
 	<footer>
