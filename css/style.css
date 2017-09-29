@@ -33,6 +33,7 @@ main {
 	height: 68vh;
 	color: #ddd;
 	justify-content: center;
+	background-color: #222;
 	background-image: url('../assets/images/earth-space.jpeg');
 	background-position: center;
 	background-size: cover;
