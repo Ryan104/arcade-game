@@ -2,19 +2,20 @@ console.log('GameState.js');
 
 class GameState {
 	constructor(lives, level=0, score=0){
-		this.playing = false;
+		this.playing = false; // is the player alive?
 		this.lives = lives; // The player's remaining lives
 		this.level = level; // the curent level
 		this.score = score; // The player's score
-		this.player = this.createPlayer();
-		this.message = "GO!";
+		this.message = "GO!"; // Messages will be displayed to the player
 
+		this.player = this.createPlayer();
 		this.enemies = new Group();
 
 		this.playerProjectiles = new Group(); // player projectiles will have collision events with enemies
 		this.enemyProjectiles = new Group(); // enemy projectiles will have collision events with the player
 
 		// levelContents -- how many enemies appear each level, etc
+		// in future versions this could contain different types of enemies, bosses, formations, etc
 		this.levelContents = [
 			{
 				enemyCount: 3
@@ -56,25 +57,19 @@ class GameState {
 	createPlayer(){
 		let player = createSprite(width/2, height-50, 25, 25);
 		player.addImage(basicPlayerImg, 'playerStd');
-		//player.shapeColor = color(255,0,0);
 
 		return player;
 	}
 
-	// Create an enemy instance
+	// Create an enemy instances for the level
 	createEnemyGroup(x,y,n){
-		// create n enemies
 		let enemyGroup = new Group();
 
-		for (let i=0; i<n; i++){
+		for (let i=0; i<n; i++){ // generate n enemies
 			let enemy = createSprite(x+i*50, y, 10, 10);  // create new enemeis spaced across field
 			
 			enemy.addImage(basicEnemyImg, 'enemyStd');  // add a sprite image
-			
-			//enemy.shapeColor = color(100, 255, 0);  // no sprite image
-
 			enemy.health = 3;  // enemies can take 3 hits
-
 			enemy.setVelocity(0,0.5);  // enemies slowly move to bottom of screen
 		
 			this.enemies.add(enemy);  // add the enemies to the group for collision detection
@@ -91,7 +86,7 @@ class GameState {
 		// create an exploding animation
 		let death = createSprite(player.position.x, player.position.y, 20, 20);
 		death.addImage(deathImg);
-		death.life = 50;
+		death.life = 50; // expire after 50 frames
 
 		// remove the player sprite from the game
 		player.remove();
@@ -101,7 +96,7 @@ class GameState {
 		if (this.lives > 0){
 			this.player = this.createPlayer();
 		} else {
-			this.playing = false;
+			this.playing = false; // game over
 		}
 	}
 
@@ -128,17 +123,12 @@ class GameState {
 
 	createBorderGroup(){
 		// creates boundaries for the game board - useful for detecting when objects leave the playing field
-		// TODO: Make borders transparent
 		let borders = new Group();
+
 		borders.add(createSprite(width/2, height, width, 0)); // Bottom
 		borders.add(createSprite(width/2, 0, width, 0)); // Top
 		borders.add(createSprite(width, height/2, 0, height)); // Right
 		borders.add(createSprite(0, height/2, 0, height)); // Left
-
-		for (let i=0;i<4;i++){
-			//borders[i].immovable = true;
-			borders[i].shapeColor = color(0,0,255);
-		}
 
 		return borders;
 	}
@@ -161,9 +151,9 @@ class GameState {
 
 	increaseScore(points, prefix=""){
 		// increaseScore() - add to the score property, dispays a notification, and updates the highscore board
-		// Increase the score property
+
 		this.score += points;
-		// Display message when user scores points
+		
 		this.message = prefix + ' (+' + points + ' points)';
 
 		// Add score to the the scores element with the largest ID (the most recent one)
@@ -174,6 +164,8 @@ class GameState {
 		// save scores to localStorage
 		window.localStorage.setItem('scores', JSON.stringify(allScores));
 	}
+
+	// ---- Run these functions every frame ---- //
 
 	playerInputs(){
 		// Player movement
@@ -243,7 +235,6 @@ class GameState {
 				console.log('lives: ' + this.lives);
 			});
 
-
 			// ---- Player/Enemy Collision ---- //
 
 			// player collides with enemy
@@ -279,7 +270,6 @@ class GameState {
 			text('GAME OVER', width/2, height/2);
 			textSize(22);
 			text('Final Score: ' + this.score, width/2, height/1.5);
-
 		}
 
 		// Move to next level if all enemies gone
@@ -290,7 +280,6 @@ class GameState {
 				this.lives += 1;
 			}
 			this.startLevel(this.level);
-
 		}
 	}
 }
