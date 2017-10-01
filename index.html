@@ -47,17 +47,36 @@
 			<!-- User sees this when the page loads -->
 			<div id="start">
 				<form onsubmit="startGame(); return false;" class="name-form">
+					<h3>Start Game</h3>
 					<!-- onsubmit return false needed to run startGame and also validate required data is entered -->
 					<input type="text" id="nameInput" placeholder="Player Name" required>
 					<input type="submit" id="submitName" value="START" class="btn start-btn">
 					<!-- Pressing start hides the name prompt and starts the game -->
 				</form>
+				<div class="howToPlay">
+					<h3>How To Play</h3>
+					<p class="actionText">FIRE</p>
+					<p>(spacebar)</p>
+					<img src="assets/images/space.png" alt="Space bar">
+					<p class="actionText">LEFT and RIGHT</p>
+					<p>(arrow keys <i>or</i> A and D keys)</p>
+					<div class="movementKeyImgs">
+						<div class="leftkeys">
+							<img src="assets/images/leftkey.png" alt="left key">
+							<img src="assets/images/akey.png" alt="A key left">
+						</div>
+						<div class="rightkeys">
+							<img src="assets/images/rightkey.png" alt="right key">
+							<img src="assets/images/dkey.png" alt="D key right">
+						</div>
+					</div>
+				</div>
 			</div>
 
-			<div class="bottom-instructions">
+			<div id="bottom-instructions" class="bottom-instructions">
 				<img src="assets/images/akey.png" alt="A key left">
 				<img src="assets/images/space.png" alt="Space bar">
-				<img src="assets/images/dkey.png" alt="A key left">
+				<img src="assets/images/dkey.png" alt="D key right">
 			</div>
 			<div class="spacer">
 

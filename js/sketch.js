@@ -50,6 +50,7 @@ function startGame(){
 	/* startGame() - executed when the START button is pressed */
 	document.getElementById('start').style.display = 'none';  // HIDE the form 
 	document.getElementById('canvas-container').style.display = 'block';  // and SHOW the canvas
+	document.getElementById('bottom-instructions').style.display = 'flex';
 
 	// Add the new player to the score list
 	let userName = document.getElementById('nameInput').value;
