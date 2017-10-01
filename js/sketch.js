@@ -58,3 +58,10 @@ function startGame(){
 	// Start the canvas loop
 	loop();
 }
+
+// prevent space from scrolling the page
+window.onkeydown = (e) => {
+	if (e.keyCode == 32){
+		e.preventDefault();
+	}
+};
