@@ -26,6 +26,7 @@ function setup(){
 	canvas.parent(document.getElementById('canvas-container'));
 
 	// Setup the game state (lives, level#, enemy patterns, score, etc)
+	// GameState class imported from GameState.js
 	gameState = new GameState(3); // Init with 3 lives
 
 	// Start at level 0
@@ -54,10 +55,22 @@ function startGame(){
 
 	// Add the new player to the score list
 	let userName = document.getElementById('nameInput').value;
-	allScores.push({name: userName, score: 0, id: allScores.length});
+
+	allScores.push({name: userName, score: 0, id: allScores.length});  // allScores is initialized in score.js
 
 	// Start the canvas loop
 	loop();
+}
+
+function resetGameState(){
+	// impliment reset button
+	allSprites.forEach((sprite) => {
+		//console.log(sprite);
+		removeSprite(sprite);
+	});
+	gameState = new GameState(3);
+	gameState.startLevel(0);
+
 }
 
 // prevent space from scrolling the page
