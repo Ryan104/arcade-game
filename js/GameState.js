@@ -1,6 +1,28 @@
 console.log('GameState.js');
 
 class GameState {
+	/*
+		The GameState class has all the methods and properties necessary for a single game
+		Creating a new GameState initializes the the Sprites and Text that appears on the screen and 
+			provides the methods to update thier display each frae
+		It also initializes the game data such as the players lives and score
+
+		It is important to run the following methods every frame (in the draw() function):
+			* collisions() - A method to track all the collision events in one place
+			* playerInputs() - A method to listen for the player's keyboard inputs for movement
+			* automation() - A method to handle any actions or scripting outside the user control
+				ie enemy movements and attacks
+
+		To use GameState:
+			In setup() -
+				let gameState = new GameState(initial_number_of_lives);
+				gameState.startLevel(initial_level);
+			In draw() -
+				gameState.automation();
+				gameState.playerInputs();
+				gameState.collisions();
+	*/
+
 	constructor(lives, level=0, score=0){
 		this.playing = false; // is the player alive?
 		this.lives = lives; // The player's remaining lives
@@ -272,6 +294,8 @@ class GameState {
 			text('GAME OVER', width/2, height/2);
 			textSize(22);
 			text('Final Score: ' + this.score, width/2, height/1.5);
+			textSize(18);
+			text('(refresh page to play again)', width/2, height/1.2);
 		}
 
 		// Move to next level if all enemies gone
