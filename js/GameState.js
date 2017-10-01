@@ -169,17 +169,19 @@ class GameState {
 
 	playerInputs(){
 		// Player movement
-		if (keyIsDown(65) || keyIsDown(37)){ // 65 == a
-			this.player.position.x -= 2;
-		}
-		if (keyIsDown(68) || keyIsDown(39)){
-			this.player.position.x += 2;
-		}
-		// Player fire
-		if (keyIsPressed){
-			if (key === ' '){
-				this.createProjectile('player', this.player.position.x, this.player.position.y);
-				key = ']'; // reset key to prevent rapid fire
+		if (this.playing){
+			if (keyIsDown(65) || keyIsDown(37)){ // 65 == a
+				this.player.position.x -= 2;
+			}
+			if (keyIsDown(68) || keyIsDown(39)){
+				this.player.position.x += 2;
+			}
+			// Player fire
+			if (keyIsPressed){
+				if (key === ' '){
+					this.createProjectile('player', this.player.position.x, this.player.position.y);
+					key = ']'; // reset key to prevent rapid fire
+				}
 			}
 		}
 
