@@ -30,13 +30,18 @@ footer {
 
 main {
 	display: flex;
-	height: 68vh;
+	height: 535px; /* Fixed to height of canvas + instructions */
 	color: #ddd;
 	justify-content: center;
 	background-color: #222;
 	background-image: url('../assets/images/earth-space.jpeg');
 	background-position: center;
 	background-size: cover;
+}
+
+.centerpiece { /* where the game lives */
+	display: flex;
+	flex-direction: column;
 }
 
 aside {
@@ -148,11 +153,6 @@ tr :first-child {
 .btn:hover {
 	animation: buttonHover;
 	animation-duration: 1s;
-}
-
-.centerpiece { /* where the game lives */
-	display: flex;
-	flex-direction: column;
 }
 
 .bottom-instructions {
