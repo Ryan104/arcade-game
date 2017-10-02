@@ -77,9 +77,9 @@ class GameState {
 
 	// Create a player instance
 	createPlayer(){
-		let player = createSprite(width/2, height-50, 25, 25);
+		let player = createSprite(width/2, height-50, 50, 50);
 		player.addImage(basicPlayerImg, 'playerStd');
-
+		player.scale = 1.75;
 		return player;
 	}
 
@@ -91,6 +91,7 @@ class GameState {
 			let enemy = createSprite(x+i*50, y, 10, 10);  // create new enemeis spaced across field
 			
 			enemy.addImage(basicEnemyImg, 'enemyStd');  // add a sprite image
+			enemy.scale = 1.5;
 			enemy.health = 3;  // enemies can take 3 hits
 			enemy.setVelocity(0,0.5);  // enemies slowly move to bottom of screen
 		
@@ -108,6 +109,7 @@ class GameState {
 		// create an exploding animation
 		let death = createSprite(player.position.x, player.position.y, 20, 20);
 		death.addImage(deathImg);
+		death.scale = 2;
 		death.life = 50; // expire after 50 frames
 
 		// remove the player sprite from the game
@@ -128,6 +130,7 @@ class GameState {
 		// v is the velocity of the projectile
 
 		let newProjectile = createSprite(x, y, 2, 5);
+		newProjectile.scale = 2;
 
 		if (whoShot === 'player'){
 			newProjectile.setVelocity(0, (vel * -1));
